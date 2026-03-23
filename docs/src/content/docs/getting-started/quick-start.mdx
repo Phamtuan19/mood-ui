@@ -1,0 +1,78 @@
+---
+title: Quick Start
+description: Bắt đầu nhanh với MoodUI trong 5 phút.
+---
+
+## Wrap app với MoodUIProvider
+
+```tsx
+import { MoodUIProvider } from 'mood-ui';
+import 'mood-ui/styles/globals.css';
+
+export default function Root() {
+  return (
+    <MoodUIProvider defaultMode="system">
+      <App />
+    </MoodUIProvider>
+  );
+}
+```
+
+## Button
+
+```tsx
+import { Button } from 'mood-ui';
+
+// Variants
+<Button variant="solid">Solid</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="subtle">Subtle</Button>
+
+// Sizes
+<Button size="xs">XS</Button>
+<Button size="sm">SM</Button>
+<Button size="md">MD</Button>
+<Button size="lg">LG</Button>
+<Button size="xl">XL</Button>
+
+// Color schemes
+<Button colorScheme="primary">Primary</Button>
+<Button colorScheme="danger">Danger</Button>
+<Button colorScheme="success">Success</Button>
+<Button colorScheme="warning">Warning</Button>
+<Button colorScheme="info">Info</Button>
+<Button colorScheme="purple">Purple</Button>
+<Button colorScheme="pink">Pink</Button>
+
+// States
+<Button loading loadingText="Loading...">Save</Button>
+<Button disabled>Disabled</Button>
+<Button rounded>Rounded</Button>
+<Button fullWidth>Full Width</Button>
+
+// With icons
+<Button leftIcon={<IconPlus />}>Create</Button>
+<Button rightIcon={<IconArrow />}>Next</Button>
+```
+
+## Badge
+
+```tsx
+import { Badge } from 'mood-ui';
+
+<Badge colorScheme="success" variant="subtle">Active</Badge>
+<Badge colorScheme="warning" variant="outline">Pending</Badge>
+<Badge colorScheme="danger" variant="solid">Error</Badge>
+```
+
+## Toggle Dark Mode
+
+```tsx
+import { useTheme } from 'mood-ui';
+
+function ThemeToggle() {
+  const { resolved, toggle } = useTheme();
+  return <button onClick={toggle}>{resolved === 'dark' ? 'Light' : 'Dark'}</button>;
+}
+```

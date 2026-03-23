@@ -1,0 +1,58 @@
+---
+title: Button
+description: Component Button trong MoodUI.
+---
+
+## Import
+
+```tsx
+import { Button } from 'mood-ui';
+```
+
+## Variants
+
+```tsx
+<Button variant="solid">Solid</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="subtle">Subtle</Button>
+```
+
+## Color Schemes
+
+```tsx
+<Button colorScheme="primary">Primary</Button>
+<Button colorScheme="secondary">Secondary</Button>
+<Button colorScheme="danger">Danger</Button>
+<Button colorScheme="success">Success</Button>
+<Button colorScheme="warning">Warning</Button>
+<Button colorScheme="info">Info</Button>
+<Button colorScheme="purple">Purple</Button>
+<Button colorScheme="pink">Pink</Button>
+```
+
+## Sizes
+
+```tsx
+<Button size="xs">XS</Button>
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+<Button size="xl">XL</Button>
+```
+
+## Props
+
+| Prop | Type | Default | Mô tả |
+|------|------|---------|--------|
+| `variant` | `'solid' \| 'outline' \| 'ghost' \| 'subtle'` | `'solid'` | Visual style |
+| `colorScheme` | ColorScheme | `'primary'` | Color |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Button size |
+| `loading` | `boolean` | `false` | Loading state |
+| `loadingText` | `string` | - | Text when loading |
+| `rounded` | `boolean` | `false` | Pill shape |
+| `fullWidth` | `boolean` | `false` | 100% width |
+| `unstyled` | `boolean` | `false` | Strip MoodUI styling |
+| `asChild` | `boolean` | `false` | Render as child element |
+| `leftIcon` | `ReactNode` | - | Left icon |
+| `rightIcon` | `ReactNode` | - | Right icon |

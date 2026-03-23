@@ -1,0 +1,50 @@
+{
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }, // Đảm bảo format chỉ áp dụng cho file hiện tại
+    // Removed deprecated eslint.autoFixOnSave as it is replaced by editor.codeActionsOnSave
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "cSpell.words": [
+        "CEFR",
+        "Excercise",
+        "ORGNANIZATIONS",
+        "Popconfirm",
+        "Sider",
+        "sigin",
+        "SUPABASE",
+        "vorcab"
+    ],
+    "editor.codeActionsOnSave": [
+        "source.addMissingImports", // Thêm import thiếu khi save
+        "source.fixAll.eslint" // Sửa lỗi ESLint khi save
+    ],
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // Sử dụng Prettier để format
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true, // Tự động format khi save
+    "editor.formatOnSaveMode": "file",
+    "eslint.alwaysShowStatus": true, // Hiển thị trạng thái ESLint trong thanh trạng thái
+    "eslint.format.enable": true, // Enable ESLint formatter
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact"
+    ], // Đảm bảo ESLint được validate cho các loại file JS/TS
+    "eslint.workingDirectories": [
+        {
+            "mode": "auto"
+        }
+    ],
+    "prettier.ignorePath": ".gitignore", // Không chạy Prettier cho các file trong .gitignore
+    "typescript.enablePromptUseWorkspaceTsdk": true, // Dùng TypeScript workspace thay vì version toàn cục
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "workbench.activityBar.orientation": "vertical"
+}

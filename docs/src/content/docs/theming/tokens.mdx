@@ -1,0 +1,61 @@
+---
+title: Token Layers
+description: Chi tiết 3 lớp token trong MoodUI.
+---
+
+## Layer 1: Raw Tokens
+
+Raw tokens là giá trị nguyên thủy — chỉ là data structure TypeScript:
+
+```typescript
+import { rawColor, rawSpacing, rawRadius } from 'mood-ui/theme/tokens';
+
+rawColor.blue[500]  // '#3b82f6'
+rawSpacing[4]       // '16px'
+rawRadius.lg        // '12px'
+```
+
+## Layer 2: Semantic Tokens
+
+Semantic tokens gán ý nghĩa cho raw values:
+
+```typescript
+import { semanticColor } from 'mood-ui/theme/semantics';
+
+semanticColor.primary     // '#3b82f6'
+semanticColor.danger      // '#ef4444'
+semanticColor.text.muted  // '#9ca3af'
+```
+
+## Layer 3: Component Tokens
+
+Component tokens định nghĩa CSS properties cho từng component:
+
+```typescript
+import { componentButton } from 'mood-ui/theme/components';
+
+componentButton.height.md      // '40px'
+componentButton.padding.sm     // '4px 8px'
+componentButton.solid.primary // { bg: '...', color: '...' }
+```
+
+## CSS Variables
+
+Giá trị cuối cùng được biên dịch thành CSS variables:
+
+```css
+.mood-light {
+  --color-primary: #3b82f6;
+  --button-height-md: 40px;
+  --font-size-sm: 14px;
+}
+```
+
+```css
+.mood-dark {
+  --color-primary: #60a5fa;
+  --button-height-md: 40px;
+}
+```
+
+**Consumer KHÔNG import từ các file tokens trực tiếp.** Chỉ sử dụng CSS variables trên `:root` hoặc qua ThemeProvider.

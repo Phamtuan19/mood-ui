@@ -1,0 +1,49 @@
+---
+title: Dark Mode
+description: Sử dụng và tùy biến dark mode trong MoodUI.
+---
+
+## ThemeProvider
+
+```tsx
+import { MoodUIProvider, useTheme } from 'mood-ui';
+
+<MoodUIProvider defaultMode="system">
+  <App />
+</MoodUIProvider>
+```
+
+`defaultMode` nhận giá trị: `'light'` | `'dark'` | `'system'`
+
+## useTheme Hook
+
+```tsx
+import { useTheme } from 'mood-ui';
+
+function ThemeToggle() {
+  const { mode, resolved, setMode, toggle } = useTheme();
+
+  return (
+    <div>
+      <p>Current mode: {mode}</p>
+      <p>Resolved: {resolved}</p>
+      <button onClick={toggle}>Toggle</button>
+      <button onClick={() => setMode('light')}>Light</button>
+      <button onClick={() => setMode('dark')}>Dark</button>
+    </div>
+  );
+}
+```
+
+## Auto-detection
+
+Khi `defaultMode="system"`, MoodUI tự động detect `prefers-color-scheme` và lắng nghe thay đổi:
+
+```tsx
+// Không cần viết thêm gì
+<MoodUIProvider defaultMode="system">
+```
+
+## Persistence
+
+Theme preference được lưu vào `localStorage` tự động. User sẽ giữ preference qua các lần reload trang.

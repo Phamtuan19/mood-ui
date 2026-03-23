@@ -1,0 +1,42 @@
+---
+title: Theming Overview
+description: Tổng quan về hệ thống theme của MoodUI.
+---
+
+MoodUI sử dụng kiến trúc **3-layer token system** được lấy cảm hứng từ design token chuẩn công nghiệp.
+
+## 3 Lớp Token
+
+```mermaid
+flowchart TB
+    subgraph L1["Layer 1: Raw Tokens"]
+        R1["color.blue[500] = #3b82f6<br/>space[4] = 16px<br/>fontSize.sm = 14px"]
+    end
+
+    subgraph L2["Layer 2: Semantic Tokens"]
+        R2["color.primary = blue[500]<br/>color.action.primary = blue[500]<br/>color.text.muted = gray[400]"]
+    end
+
+    subgraph L3["Layer 3: Component Tokens"]
+        R3["button.padding = space[3]<br/>button.height.md = 40px<br/>input.borderRadius = radius.md"]
+    end
+
+    L1 --> L2 --> L3
+```
+
+## Theme Contract
+
+Theme Contract là interface TypeScript **không chứa vanilla-extract**, là lớp abstraction công khai cho consumer:
+
+```typescript
+import type { ThemeContract } from 'mood-ui/theme';
+// ThemeContract chứa tất cả type cho color, typography, spacing...
+```
+
+## Consumer Override
+
+Có 3 cách để override theme:
+
+1. **CSS Override** (đơn giản nhất)
+2. **Programmatic Theme** (config JS object)
+3. **Runtime Token Override** (live-update)

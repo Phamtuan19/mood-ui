@@ -1,0 +1,57 @@
+---
+title: Installation
+description: Cài đặt MoodUI vào dự án của bạn.
+---
+
+## Cài đặt qua npm
+
+```bash
+npm install mood-ui
+# hoặc
+pnpm add mood-ui
+# hoặc
+yarn add mood-ui
+```
+
+## Peer Dependencies
+
+MoodUI yêu cầu React 18+ và React DOM:
+
+```bash
+npm install react react-dom
+```
+
+## Import Global Styles
+
+Thêm vào entry point của ứng dụng (ví dụ `main.tsx` hoặc `_app.tsx`):
+
+```tsx
+// main.tsx
+import 'mood-ui/styles/globals.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+## Sử dụng cơ bản
+
+```tsx
+import { MoodUIProvider, Button, Badge } from 'mood-ui';
+
+function App() {
+  return (
+    <MoodUIProvider>
+      <Button variant="solid" colorScheme="primary">
+        Hello MoodUI
+      </Button>
+      <Badge colorScheme="success">Published</Badge>
+    </MoodUIProvider>
+  );
+}
+```

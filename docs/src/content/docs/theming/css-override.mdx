@@ -1,0 +1,68 @@
+---
+title: CSS Override
+description: Override theme bằng CSS variables — cách đơn giản nhất để tùy biến MoodUI.
+---
+
+## Cách 1: CSS Variables Override (Khuyến nghị)
+
+Đây là cách **đơn giản nhất** và hoạt động với **bất kỳ framework nào** (React, Vue, Svelte, vanilla JS).
+
+Thêm vào CSS của bạn:
+
+```css
+/* my-app.css */
+:root {
+  /* Đổi màu brand chính */
+  --color-primary: #8b5cf6;
+  --color-primary-hover: #7c3aed;
+  --color-action-primary: #8b5cf6;
+
+  /* Đổi border radius */
+  --button-radius-md: 16px;
+  --badge-radius-md: 16px;
+
+  /* Đổi typography */
+  --font-size-sm: 13px;
+  --font-size-base: 15px;
+}
+```
+
+## Cách 2: Programmatic Override
+
+Tạo custom theme object:
+
+```tsx
+import { MoodUIProvider } from 'mood-ui';
+
+const myTheme = {
+  color: {
+    primary: '#8b5cf6',
+    background: '#0a0a0a',
+  },
+  components: {
+    button: {
+      padding: { md: '12px 24px' },
+      borderRadius: { md: '12px' },
+    }
+  }
+};
+```
+
+## Cách 3: Runtime (assignInlineVars)
+
+Live-update không cần reload:
+
+```tsx
+import { assignInlineVars } from '@vanilla-extract/css-utils';
+import { themeVars } from 'mood-ui/theme';
+
+<div style={assignInlineVars(themeVars, {
+  'color-primary': userConfig.brandColor
+})}>
+  <Button>Dynamic Theme</Button>
+</div>
+```
+
+## Available CSS Variables
+
+Xem danh sách đầy đủ các CSS variables tại [src/theme/themes.ts](https://github.com/yourusername/mood-ui/blob/main/src/theme/themes.ts)

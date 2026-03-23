@@ -1,0 +1,33 @@
+---
+title: MoodUI — Layered Theme System
+description: A mobile-first UI library with a 3-layer design token system, powered by Vanilla Extract.
+template: splash
+hero:
+  title: MoodUI
+  tagline: Xây dựng giao diện đẹp, dễ tùy biến với hệ thống theme phân lớp.
+  actions:
+    - text: Get Started
+      link: /mood-ui/getting-started/installation/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/yourusername/mood-ui
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="3-Layer Token System" icon="rocket">
+    Raw tokens → Semantic tokens → Component tokens. Kiến trúc phân lớp rõ ràng, dễ maintain và mở rộng.
+  </Card>
+  <Card title="Dual Mode Components" icon="puzzle">
+    Mỗi component có 2 chế độ: **Styled** (đẹp ngay) và **Unstyled** (headless, tự do custom).
+  </Card>
+  <Card title="Zero-Runtime CSS" icon="lightning">
+    Powered by Vanilla Extract — type-safe, compile-time CSS. Không runtime overhead.
+  </Card>
+  <Card title="Dark Mode Built-in" icon="moon">
+    Hỗ trợ light/dark/system mode ngay từ đầu. Dễ dàng tùy biến theme.
+  </Card>
+</CardGrid>

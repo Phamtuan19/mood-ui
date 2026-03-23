@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoodUI — Layered Theme System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --demo-font: 'Inter', -apple-system, sans-serif;
+        --demo-code: 'JetBrains Mono', monospace;
+        --demo-radius: 8px;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      * { margin: 0; padding: 0; }
+      html, body, #root { height: 100%; }
+
+      body {
+        font-family: var(--demo-font);
+        background: var(--color-canvas, #ffffff);
+        color: var(--color-text-primary, #111827);
+        transition: background 0.2s, color 0.2s;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Dark mode */
+      .dark { color-scheme: dark; }
+      .dark body { background: var(--color-canvas, #0f172a); color: var(--color-text-primary, #f1f5f9); }
+
+      /* Override: change brand color to purple */
+      /* Try uncommenting these lines: */
+      /* :root { --color-primary: #8b5cf6; --color-action-primary: #8b5cf6; } */
+
+      /* Demo layout */
+      .demo-root { min-height: 100vh; display: flex; flex-direction: column; }
+
+      .demo-header {
+        border-bottom: 1px solid var(--color-border-default, #e5e7eb);
+        padding: 16px 0;
+        position: sticky; top: 0; z-index: 1020;
+        background: var(--color-canvas, #ffffff);
+        backdrop-filter: blur(8px);
+      }
+      .dark .demo-header { border-color: var(--color-border-default, #334155); background: rgba(15,23,42,0.9); }
+
+      .demo-header-inner { max-width: 1024px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+
+      .demo-title { font-size: 24px; font-weight: 700; color: var(--color-primary, #3b82f6); }
+      .demo-subtitle { font-size: 14px; color: var(--color-text-secondary, #4b5563); margin-top: 2px; }
+      .dark .demo-subtitle { color: var(--color-text-secondary, #94a3b8); }
+
+      .theme-toggle {
+        width: 40px; height: 40px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        border: 1px solid var(--color-border-default, #e5e7eb);
+        background: var(--color-surface, #f9fafb);
+        color: var(--color-text-primary, #111827);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .theme-toggle:hover { background: var(--color-surface-raised, #f3f4f6); }
+      .dark .theme-toggle { border-color: var(--color-border-default, #334155); background: var(--color-surface, #1e293b); color: var(--color-text-primary, #f1f5f9); }
+
+      .demo-hero { padding: 64px 24px; text-align: center; }
+      .demo-hero-inner { max-width: 600px; margin: 0 auto; }
+      .demo-hero h2 { font-size: 36px; font-weight: 700; margin-bottom: 12px; color: var(--color-text-primary, #111827); }
+      .dark .demo-hero h2 { color: var(--color-text-primary, #f1f5f9); }
+      .demo-hero p { font-size: 18px; color: var(--color-text-secondary, #4b5563); }
+      .dark .demo-hero p { color: var(--color-text-secondary, #94a3b8); }
+
+      .demo-section { max-width: 1024px; margin: 0 auto; padding: 40px 24px; border-top: 1px solid var(--color-border-default, #e5e7eb); }
+      .dark .demo-section { border-color: var(--color-border-default, #334155); }
+      .demo-section-title { font-size: 20px; font-weight: 600; margin-bottom: 16px; color: var(--color-text-primary, #111827); }
+      .dark .demo-section-title { color: var(--color-text-primary, #f1f5f9); }
+      .demo-section-desc { font-size: 14px; color: var(--color-text-secondary, #4b5563); margin-bottom: 16px; }
+      .dark .demo-section-desc { color: var(--color-text-secondary, #94a3b8); }
+
+      .demo-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+      .demo-row-align { align-items: center; }
+      .demo-row-wrap { flex-wrap: wrap; }
+
+      .demo-palette { display: flex; flex-direction: column; gap: 8px; }
+      .demo-palette-row { display: flex; align-items: center; gap: 4px; }
+      .demo-palette-label { width: 64px; font-size: 12px; font-weight: 500; color: var(--color-text-secondary, #4b5563); flex-shrink: 0; }
+      .dark .demo-palette-label { color: var(--color-text-secondary, #94a3b8); }
+      .demo-palette-swatch { width: 32px; height: 32px; border-radius: 4px; cursor: pointer; }
+      .demo-palette-swatch:hover { transform: scale(1.15); }
+
+      .demo-code-block {
+        background: var(--color-surface, #f9fafb);
+        border: 1px solid var(--color-border-default, #e5e7eb);
+        border-radius: var(--demo-radius);
+        padding: 16px;
+        font-family: var(--demo-code);
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--color-text-primary, #111827);
+        white-space: pre;
+        overflow-x: auto;
+      }
+      .dark .demo-code-block { background: var(--color-surface, #1e293b); border-color: var(--color-border-default, #334155); color: var(--color-text-primary, #f1f5f9); }
+
+      .demo-footer { margin-top: auto; padding: 32px 24px; text-align: center; border-top: 1px solid var(--color-border-default, #e5e7eb); }
+      .dark .demo-footer { border-color: var(--color-border-default, #334155); }
+      .demo-footer p { font-size: 14px; color: var(--color-text-muted, #9ca3af); }
+
+      /* Spinner animation */
+      @keyframes mood-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>
